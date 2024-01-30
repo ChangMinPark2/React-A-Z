@@ -1,25 +1,23 @@
 import React, {useState} from "react";
 import "./App.css";
 import List from "./component/List";
+import Form from "./component/Form";
 
 export default function App() {
 
     const [todoData, setTodoData] = useState([]);
     const [value, setValue] = useState("");
-    const getStyle = (completed) => {
-        return {
-            padding: "10px",
-            borderBottom: "1px #ccc dotted",
-            textDecoration: completed ? "line-through" : "none"
-        }
-    }
-    const state = {
-        todoData: [],
-        value: ""
-    }
-    const handleChange = (e) => {
-        setTodoData(e.target.value)
-    }
+    // const getStyle = (completed) => {
+    //     return {
+    //         padding: "10px",
+    //         borderBottom: "1px #ccc dotted",
+    //         textDecoration: completed ? "line-through" : "none"
+    //     }
+    // }
+    // const state = {
+    //     todoData: [],
+    //     value: ""
+    // }
 
     //추가기능
     const handleSubmit = (e) => {
@@ -28,23 +26,23 @@ export default function App() {
         let newTodo = {
             id: Date.now(),
             title: value,
-            completed: false
-        }
+            completed: false,
+        };
+
         //원래 할일 + 새로운 할일
-        this.setState({todoData: [...todoData, newTodo], value: ""})
         setTodoData((prev) => [...prev, newTodo]);
         setValue("");
     }
 
-    const handleCompleteChange = (id) => {
-        let newTodoData = todoData.map(data => {
-            if (data.id === id) {
-                data.completed = !data.completed;
-            }
-            return data;
-        })
-        setTodoData(newTodoData)
-    }
+    // const handleCompleteChange = (id) => {
+    //     let newTodoData = todoData.map(data => {
+    //         if (data.id === id) {
+    //             data.completed = !data.completed;
+    //         }
+    //         return data;
+    //     })
+    //     setTodoData(newTodoData)
+    // }
 
     return (
         <div className="container">
@@ -54,24 +52,7 @@ export default function App() {
                 </div>
 
                 <List todoData={todoData} setTodoData = {setTodoData}/>
-
-                <form style={{display: "flex"}} onSubmit={handleSubmit}>
-                    <input
-                        type={"text"}
-                        name={"value"}
-                        style={{flex: '10', padding: '5px'}}
-                        placeholder={"해야 할 일을 입력해주세요."}
-                        value={value}
-                        onChange={handleChange}
-                    />
-
-                    <input
-                        type={"submit"}
-                        value={"입력"}
-                        className={"btn"}
-                        style={{flex: '1'}}
-                    />
-                </form>
+                <Form value={value} setValue={setValue} handleSubmit={handleSubmit}></Form>
             </div>
 
         </div>
