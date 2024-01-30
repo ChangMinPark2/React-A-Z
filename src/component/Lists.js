@@ -4,23 +4,6 @@ import List from "./List";
 
 
 export default function Lists({todoData, setTodoData}) {
-
-    const handleCompleteChange = (id) => {
-        let newTodoData = todoData.map(data => {
-            if (data.id === id) {
-                data.completed = !data.completed;
-            }
-            return data;
-        })
-        setTodoData(newTodoData)
-    }
-
-    //삭제기능
-    const handleClick = (id) => {
-        let newTodoData = todoData.filter(data => data.id !== id);
-        setTodoData(newTodoData)
-    }
-
     const handleEnd = (result) => {
         if (!result.destination) return;
         const newTodoData=todoData;

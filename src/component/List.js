@@ -1,7 +1,7 @@
 import React from 'react'
 import {Draggable} from "react-beautiful-dnd";
 
-const List = ({
+const List = React.memo(({
     id, title, completed, todoData, setTodoData, provided, snapshot,
               }) => {
     const handleCompleteChange = (id) => {
@@ -47,6 +47,6 @@ const List = ({
             </div>
         </div>
     )
-}
+});
 
 export default List
