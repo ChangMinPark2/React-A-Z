@@ -3,9 +3,10 @@ import "./App.css";
 import Lists from "./component/Lists";
 import Form from "./component/Form";
 
+const initialTodoData = localStorage.getItem("todoData") ? JSON.parse(localStorage.getItem("todoData")) : [];
 export default function App() {
 
-    const [todoData, setTodoData] = useState([]);
+    const [todoData, setTodoData] = useState(initialTodoData);
     const [value, setValue] = useState("");
     //추가기능
     const handleSubmit = (e) => {
@@ -19,11 +20,14 @@ export default function App() {
 
         //원래 할일 + 새로운 할일
         setTodoData((prev) => [...prev, newTodo]);
+        localStorage.setItem('todoData', JSON.stringify([...todoData, newTodo]));
         setValue("");
     }
 
     const handleRemoveClick = () => {
         setTodoData([]);
+        localStorage.setItem('todoData', JSON.stringify([]));
+
     }
 
     return (
