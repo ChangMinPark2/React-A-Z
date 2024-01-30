@@ -7,18 +7,6 @@ export default function App() {
 
     const [todoData, setTodoData] = useState([]);
     const [value, setValue] = useState("");
-    // const getStyle = (completed) => {
-    //     return {
-    //         padding: "10px",
-    //         borderBottom: "1px #ccc dotted",
-    //         textDecoration: completed ? "line-through" : "none"
-    //     }
-    // }
-    // const state = {
-    //     todoData: [],
-    //     value: ""
-    // }
-
     //추가기능
     const handleSubmit = (e) => {
         e.preventDefault(); //페이지 리로드 방지
@@ -34,24 +22,16 @@ export default function App() {
         setValue("");
     }
 
-    // const handleCompleteChange = (id) => {
-    //     let newTodoData = todoData.map(data => {
-    //         if (data.id === id) {
-    //             data.completed = !data.completed;
-    //         }
-    //         return data;
-    //     })
-    //     setTodoData(newTodoData)
-    // }
-
     return (
         <div className="container">
             <div className="todoBlock">
                 <div className="title">
                     <h1>할 일 목록</h1>
                 </div>
-
-                <List todoData={todoData} setTodoData = {setTodoData}/>
+                <h1 className="text-3xl font-bold underline">
+                    Hello world!
+                </h1>
+                <List todoData={todoData} setTodoData={setTodoData}/>
                 <Form value={value} setValue={setValue} handleSubmit={handleSubmit}></Form>
             </div>
 
