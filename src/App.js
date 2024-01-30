@@ -30,13 +30,31 @@ export default class App extends Component {
               title: "청소하기",
               completed: false
           }
-      ]
+      ],
+      value: ""
   }
 
-
+    //삭제기능
     handleClick = (id) => {
       let newTodoData = this.state.todoData.filter(data => data.id !== id);
       this.setState({todoData: newTodoData});
+    }
+
+    handleChange = (e) => {
+      this.setState({value: e.target.value})
+    }
+
+    //추가기능
+    handleSubmit = (e) => {
+      e.preventDefault(); //페이지 리로드 방지
+
+      let newTodo = {
+          id: Date.now(),
+          title: this.state.value,
+          completed: false
+      }
+      //원래 할일 + 새로운 할일
+      this.setState({todoData: [...this.state.todoData, newTodo]})
     }
   render() {
     return(
@@ -52,7 +70,26 @@ export default class App extends Component {
                         <button style={this.btnStyle} onClick={() => this.handleClick(data.id)}>x</button>
                     </div>
                 ))}
+
+                <form style={{display: "flex"}} onSubmit={this.handleSubmit}>
+                    <input
+                        type={"text"}
+                        name={"value"}
+                        style={{flex: '10', padding: '5px'}}
+                        placeholder={"해야 할 일을 입력해주세요."}
+                        value={this.state.value}
+                        onChange={this.handleChange}
+                    />
+
+                    <input
+                        type={"submit"}
+                        value={"입력"}
+                        className={"btn"}
+                        style={{flex: '1'}}
+                    />
+                </form>
             </div>
+
         </div>
     )
   }
