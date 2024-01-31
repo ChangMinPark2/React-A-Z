@@ -17,10 +17,10 @@ export default function Nav() {
         };
     }, []);
 
-    // const handleChange = (e) => {
-    //     setSearchValue(e.target.value);
-    //     navigate(`/search?q=${e.target.value}`);
-    // };
+    const handleChange = (e) => {
+        setSearchValue(e.target.value);
+        navigate(`/search?q=${e.target.value}`);
+    };
 
     return (
         <nav className={`nav ${show && "nav__black"} `}>
